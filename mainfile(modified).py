@@ -37,11 +37,6 @@ def print_pm(scheduler):
     pyautogui.click()
     scheduler.run_after(print_pm, cd.pm_cooldown)
 
-def print_bet(scheduler):
-    msg= "pls bet " + str(config.bet_amount)
-    type_send(msg)
-    scheduler.run_after(print_bet, cd.bet_cooldown)
-
 def print_hl(scheduler):
     type_send("pls hl")
     time.sleep(random.randint(cd.hlAnswer_cooldown, cd.hlAnswer_cooldown+5))
@@ -89,8 +84,6 @@ if config.fish:
     s.run_soon(print_fish)
 if config.pm:
     s.run_soon(print_pm)
-if config.bet:
-    s.run_soon(print_bet)
 if config.hl:
     s.run_soon(print_hl)
 if config.dig:
