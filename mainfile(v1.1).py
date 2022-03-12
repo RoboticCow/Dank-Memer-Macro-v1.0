@@ -52,6 +52,19 @@ def print_scout(scheduler):
     time.sleep(random.randint(1,6))
     pyautogui.click()
     scheduler.run_after(print_scout, 30)
+def print_crime(scheduler):
+    type_send("pls crime")
+    time.sleep(random.randint(1,5))
+    pyautogui.click()
+    scheduler.run_after(print_crime, 30)
+def print_buyhorseshoe(scheduler):
+    type_send("pls withdraw 50000")
+    time.sleep(random.randint(1,3))
+    type_send("pls buy horseshoe")
+    scheduler.run_after(print_buyhorseshoe, cd.horseshoe_cooldown)
+def print_usehorseshoe(scheduler):
+    type_send("pls use horseshoe")
+    scheduler.run_after(print_usehorseshoe, cd.horseshoe_cooldown)
 class Scheduler:
     def __init__(self):
         self.ready = []
@@ -90,8 +103,16 @@ if config.dig:
     s.run_soon(print_dig)
 if config.scout:
     s.run_soon(print_scout)
+if config.crime:
+    s.run_soon(print_crime)
 if config.dep:
     s.run_soon(print_dep)
+if config.BUY_horseshoe and config.numberofhorseshoe == 0:
+    s.run_soon(print_buyhorseshoe)
+    config.numberofhorseshoe += 1
+    print(config.numberofhorseshoe)
+if config.USE_horseshoe:
+    s.run_soon(print_usehorseshoe)
+    config.numberofhorseshoe -= 1
+    print(config.numberofhorseshoe)
 s.run_until_complete()
-
-#use async in future
