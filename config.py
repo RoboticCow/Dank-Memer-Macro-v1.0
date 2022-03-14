@@ -1,14 +1,15 @@
 beg= True
+hunt= True
 fish= True
 pm= True
 hl= True
 dep= True
 dig = True
-scout = True
-crime = True
-BUY_horseshoe = True
-USE_horseshoe = True
+scout = False
+crime = False
+gamble = False
+BUY_horseshoe = False
+USE_horseshoe = False
 numberofhorseshoe = 0
+betamount = 1500
 send_id =270904126974590976  #dank memer's id
-
-
