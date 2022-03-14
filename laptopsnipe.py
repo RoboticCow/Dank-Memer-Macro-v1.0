@@ -10,7 +10,7 @@ def timenow():
     now = datetime.now()
     return(now.strftime("%H:%M:%S"))
 print("Current Time =", timenow())
-timestart = input("next refresh in hh:mm:ss = ")
+timestart = input("when to send command in hh:mm:ss = ")
 numbertobuy = input("number of laptops to buy = ")
 while True:
     if timenow() >= timestart:
