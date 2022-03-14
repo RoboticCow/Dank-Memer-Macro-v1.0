@@ -1,9 +1,11 @@
+from colorsys import hls_to_rgb
 from email.errors import FirstHeaderLineIsContinuationDefect
 from hmac import digest
 import select
 import sys
 import time
 import random
+from turtle import begin_fill
 import cooldowns as cd
 import pynput
 from pynput.keyboard import Key, Controller
@@ -65,6 +67,9 @@ def print_buyhorseshoe(scheduler):
 def print_usehorseshoe(scheduler):
     type_send("pls use horseshoe")
     scheduler.run_after(print_usehorseshoe, cd.horseshoe_cooldown)
+def print_gamble(scheduler):
+    type_send("pls gamble " + str(config.betamount))
+    scheduler.run_after(print_gamble, cd.gamble_cooldown)
 class Scheduler:
     def __init__(self):
         self.ready = []
@@ -88,7 +93,18 @@ class Scheduler:
                     del self.waiting[i]
 
 s = Scheduler()
+if config.USE_horseshoe:
+    setshoenum = int(input('Number of horseshoe : '))
+    config.numberofhorseshoe = setshoenum
 time.sleep(5) #activate your window where you need to type within 5 sec
+if config.BUY_horseshoe and config.numberofhorseshoe == 0:
+    s.run_soon(print_buyhorseshoe)
+    config.numberofhorseshoe += 1
+    print(config.numberofhorseshoe)
+if config.USE_horseshoe:
+    s.run_soon(print_usehorseshoe)
+    config.numberofhorseshoe -= 1
+    print(config.numberofhorseshoe)
 if config.beg:
     s.run_soon(print_beg)
 if config.hunt:
@@ -105,14 +121,8 @@ if config.scout:
     s.run_soon(print_scout)
 if config.crime:
     s.run_soon(print_crime)
+if config.gamble:
+    s.run_soon(print_gamble)
 if config.dep:
     s.run_soon(print_dep)
-if config.BUY_horseshoe and config.numberofhorseshoe == 0:
-    s.run_soon(print_buyhorseshoe)
-    config.numberofhorseshoe += 1
-    print(config.numberofhorseshoe)
-if config.USE_horseshoe:
-    s.run_soon(print_usehorseshoe)
-    config.numberofhorseshoe -= 1
-    print(config.numberofhorseshoe)
 s.run_until_complete()
