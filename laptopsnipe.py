@@ -10,13 +10,15 @@ def timenow():
     now = datetime.now()
     return(now.strftime("%H:%M:%S"))
 print("Current Time =", timenow())
-timestart = input("when to send command in hh:mm:ss = ")
+timestart = input("when to send message in hh:mm:ss = ")
 numbertobuy = input("number of laptops to buy = ")
 while True:
     if timenow() >= timestart:
         type_send("pls buy laptop " + numbertobuy)
+        time.sleep(0.2)
         pyautogui.click()
         while True:
             time.sleep(3600)
             type_send("pls buy laptop " + numbertobuy)
+            time.sleep(0.2)
             pyautogui.click()
