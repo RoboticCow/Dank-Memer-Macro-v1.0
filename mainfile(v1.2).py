@@ -1,17 +1,11 @@
-from colorsys import hls_to_rgb
-from email.errors import FirstHeaderLineIsContinuationDefect
-from hmac import digest
-import select
-import sys
 import time
 import random
-from turtle import begin_fill
 import cooldowns as cd
-import pynput
 from pynput.keyboard import Key, Controller
 import config
 import pyautogui
 keyboard = Controller()
+
 def type_send(msg):
     keyboard.type(str(msg))
     time.sleep(2)
@@ -23,14 +17,20 @@ def print_beg(scheduler):
 
 def print_hunt(scheduler):
     type_send("pls hunt")
+    time.sleep(2)
+    pyautogui.click()
     scheduler.run_after(print_hunt, cd.hunt_cooldown)
 
 def print_dig(scheduler):
     type_send("pls dig")
+    time.sleep(2)
+    pyautogui.click()
     scheduler.run_after(print_dig, cd.dig_cooldown)
 
 def print_fish(scheduler):
     type_send("pls fish")
+    time.sleep(2)
+    pyautogui.click()
     scheduler.run_after(print_fish, cd.fish_cooldown)
 
 def print_pm(scheduler):
@@ -67,6 +67,9 @@ def print_buyhorseshoe(scheduler):
 def print_usehorseshoe(scheduler):
     type_send("pls use horseshoe")
     scheduler.run_after(print_usehorseshoe, cd.horseshoe_cooldown)
+def print_usepizza(scheduler):
+    type_send("pls use pizza")
+    scheduler.run_after(print_usepizza, cd.pizza_cooldown)
 def print_gamble(scheduler):
     type_send("pls gamble " + str(config.betamount))
     scheduler.run_after(print_gamble, cd.gamble_cooldown)
@@ -96,7 +99,11 @@ s = Scheduler()
 if config.USE_horseshoe:
     setshoenum = int(input('Number of horseshoe : '))
     config.numberofhorseshoe = setshoenum
-time.sleep(5) #activate your window where you need to type within 5 sec
+if config.USE_pizza:
+    setpizzanum = int(input('Number of pizza : '))
+    config.numberofpizza = setpizzanum
+time.sleep(5)
+pyautogui.moveTo(526,881)
 if config.BUY_horseshoe and config.numberofhorseshoe == 0:
     s.run_soon(print_buyhorseshoe)
     config.numberofhorseshoe += 1
@@ -105,6 +112,9 @@ if config.USE_horseshoe:
     s.run_soon(print_usehorseshoe)
     config.numberofhorseshoe -= 1
     print(config.numberofhorseshoe)
+if config.USE_pizza:
+    s.run_soon(print_usepizza)
+    config.numberofpizza -= 1
 if config.beg:
     s.run_soon(print_beg)
 if config.hunt:
