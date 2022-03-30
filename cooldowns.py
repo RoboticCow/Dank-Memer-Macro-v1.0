@@ -1,7 +1,7 @@
 beg_cooldown = 45
 fish_cooldown = 40
 hunt_cooldown = 40
-pm_cooldown = 45
+pm_cooldown = 50
 pmAnswer_cooldown = 2
 hlAnswer_cooldown = 3
 hl_cooldown = 30
@@ -12,3 +12,4 @@ dep_cooldown = 1200
 crime_cooldown = 45
 gamble_cooldown = 8
 horseshoe_cooldown = 900
+pizza_cooldown = 3600
