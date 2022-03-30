@@ -1,6 +1,4 @@
 # Dank-Memer-Macro-v1.0
-Macros is against discord TOS and dank memer. Use at your own risk
-
 How to use :
 -Ensure you have a software to run python code. This project was done and tested via Visual Studio Code.You can download it at https://code.visualstudio.com/Download
 -Download the zip file and unzip it
